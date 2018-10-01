@@ -30,9 +30,9 @@ public class GameUI extends JFrame{
 			for(int j = 0; j < 800; j += 100) {
 				isLight = (((i / 100) % 2) == ((j / 100) % 2)) ? true : false;
 				if(isLight) {
-					g.setColor(Color.ORANGE);
+					g.setColor(new Color(255, 223, 99));
 				}else {
-					g.setColor(Color.yellow);
+					g.setColor(new Color(255, 187, 50));
 				}
 				g.fillRect(i, j + 50, 100, 100);
 			}
