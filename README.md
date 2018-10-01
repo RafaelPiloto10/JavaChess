@@ -4,7 +4,8 @@
   - [ ] Create a move validator, which can be called from ```GameFlow.java```, to validate moves.
 
 * Add UI
-  - [ ] Find Chess Piece resource pack
+  - [x] Find Chess Piece resource pack
+    * https://github.com/patosai/chess/tree/master/Sprites
     #### Colors for Chess Squares:  
       * Light: hex(#ffdf63) rgb(255, 223, 99)
       * Dark: hex(#ffbb32) rgb(255, 187, 50)
