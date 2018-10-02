@@ -19,7 +19,7 @@ public class Piece {
 		this.state = state;
 		
 		try {
-			File file = new File("C:\\Users\\Blue2015\\Documents\\Dev\\dev-Java\\JavaChess\\src\\com\\piloto1\\Chess\\Board\\Piece\\images\\" + (this.player + this.type + ".png"));
+			File file = new File(Piece.class.getResource(".").getPath() + "\\images\\" + (this.player + this.type + ".png"));
 	        img = ImageIO.read(file);
 	    } catch (IOException e) {
 	    	System.out.println("Cannot find image. ERROR: " + e);
