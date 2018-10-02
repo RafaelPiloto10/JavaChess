@@ -1,19 +1,18 @@
 package com.piloto1.Chess.GameFlow;
 
-import java.util.Arrays;
-
 import com.piloto1.Chess.Board.Board;
 import com.piloto1.Chess.Board.Piece.Piece;
 
 public class GameFlow {
 	
+	MoveValidator validator = new MoveValidator();
+	ConsoleManagement input = new ConsoleManagement();
+
 	public Piece[][] makeMove(Board B, String player) {
 		// Rank is a row board[rank]
 		// File is a column board[rank][file]
-		ConsoleManagement input = new ConsoleManagement();
 		Piece[][] board = B.board;
 		boolean validMove = false;
-		
 		while(!validMove) {
 			int[] tMove = input.promptMoveInput(board, null, player);
 			
@@ -38,8 +37,12 @@ public class GameFlow {
 	}
 	
 	public Piece[][] makeMoveUI(Piece[][] board, int x, int y, int tX, int tY){
-		board[tX][tY] = board[x][y];
-		board[x][y] = null;
+		if(validator.validate(board, x, y, tX, tY)) {
+			board[tX][tY] = board[x][y];
+			board[x][y] = null;
+		} else {
+			System.out.println("Cannot make move");
+		}
 		
 		return board;
 	}

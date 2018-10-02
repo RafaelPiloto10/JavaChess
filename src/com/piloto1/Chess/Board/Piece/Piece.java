@@ -11,6 +11,7 @@ public class Piece {
 	private boolean state;
 	private String player;
 	public BufferedImage img = null;
+	public boolean used = false;
 
 	
 	public Piece(String type, boolean state, String player){
