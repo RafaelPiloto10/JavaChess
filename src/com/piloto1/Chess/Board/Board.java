@@ -10,11 +10,11 @@ public class Board {
 	public void createBoard() {
 		board = new Piece[8][8];
 		for(int i = 0; i < 8; i++) {
-			board[0][i] = new Piece(pieceTypes[i], true, "White");
-			board[1][i] = new Piece("Pawn", true, "White");
+			board[0][i] = new Piece(pieceTypes[i], true, "white");
+			board[1][i] = new Piece("Pawn", true, "white");
 			
-			board[board.length -1][i] = new Piece(pieceTypes[board.length - 1 - i], true, "Black");
-			board[board.length - 2][i] = new Piece("Pawn", true, "Black");
+			board[board.length -1][i] = new Piece(pieceTypes[board.length - 1 - i], true, "black");
+			board[board.length - 2][i] = new Piece("Pawn", true, "black");
 		}
 	}
 	

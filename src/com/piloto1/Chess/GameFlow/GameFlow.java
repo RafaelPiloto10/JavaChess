@@ -1,5 +1,7 @@
 package com.piloto1.Chess.GameFlow;
 
+import java.util.Arrays;
+
 import com.piloto1.Chess.Board.Board;
 import com.piloto1.Chess.Board.Piece.Piece;
 
@@ -33,6 +35,13 @@ public class GameFlow {
 		
 		return board;
 	
+	}
+	
+	public Piece[][] makeMoveUI(Piece[][] board, int x, int y, int tX, int tY){
+		board[tX][tY] = board[x][y];
+		board[x][y] = null;
+		
+		return board;
 	}
 	
 	

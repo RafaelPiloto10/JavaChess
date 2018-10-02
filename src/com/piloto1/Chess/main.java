@@ -13,7 +13,7 @@ public class main {
 		boolean usingUI = true;
 		
 		if(usingUI) {
-			GameUI UI = new GameUI("Chess", 800, 850);
+			GameUI UI = new GameUI("Chess", 800, 825, game.board, gameControl);
 		} else {
 			game.displayBoard();
 			int turn = 1;
