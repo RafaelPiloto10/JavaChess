@@ -58,16 +58,23 @@ public class MoveValidator {
 						
 						break;
 					case "Rook":
-						System.out.println("Rook");
-						break;
-					case "Knight":
-						System.out.println("Knight");
-						break;
+						if(deltaRank != 0 && deltaFile != 0) {
+							return false;
+						}
+				case "Knight":
+					if(!((Math.abs(deltaRank) == 1 && Math.abs(deltaFile) == 2) || (Math.abs(deltaRank) == 2 && Math.abs(deltaFile) == 1))) {
+						return false;
+					}
+					break;
 					case "Bishop":
-						System.out.println("Bishop");
+						if(!(Math.abs(deltaRank) == Math.abs(deltaFile))) {
+							return false;
+						}
 						break;
 					case "King":
-						System.out.println("King");
+						if(!((Math.abs(deltaRank) == 1 || Math.abs(deltaRank) == 0) && (Math.abs(deltaFile) == 1 || Math.abs(deltaFile) == 0))) {
+							return false;
+						}
 						break;
 					case "Queen":
 						System.out.println("Queen");
@@ -109,17 +116,24 @@ public class MoveValidator {
 						
 						break;
 					case "Rook":
-						System.out.println("Rook");
+						if(deltaRank != 0 && deltaFile != 0) {
+							return false;
+						}
 						break;
 					case "Knight":
-						System.out.println("Knight");
+						if(!((Math.abs(deltaRank) == 1 && Math.abs(deltaFile) == 2) || (Math.abs(deltaRank) == 2 && Math.abs(deltaFile) == 1))) {
+							return false;
+						}
 						break;
 					case "Bishop":
-						System.out.println("Bishop");
+						if(!(Math.abs(deltaRank) == Math.abs(deltaFile))) {
+							return false;
+						}
 						break;
 					case "King":
-						System.out.println("King");
-						break;
+						if(!((Math.abs(deltaRank) == 1 || Math.abs(deltaRank) == 0) && (Math.abs(deltaFile) == 1 || Math.abs(deltaFile) == 0))) {
+							return false;
+						}						break;
 					case "Queen":
 						System.out.println("Queen");
 						break;
