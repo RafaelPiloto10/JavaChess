@@ -60,7 +60,11 @@ public class MoveValidator {
 					case "Rook":
 						if(deltaRank != 0 && deltaFile != 0) {
 							return false;
+						} else if(!(validateMovement(board, x, y, tX, tY, board[x][y].getType()))) {
+							return false;
 						}
+						
+						break;
 				case "Knight":
 					if(!((Math.abs(deltaRank) == 1 && Math.abs(deltaFile) == 2) || (Math.abs(deltaRank) == 2 && Math.abs(deltaFile) == 1))) {
 						return false;
@@ -77,7 +81,9 @@ public class MoveValidator {
 						}
 						break;
 					case "Queen":
-						System.out.println("Queen");
+						if(!(Math.abs(deltaRank) == Math.abs(deltaFile)) && (deltaRank != 0 && deltaFile != 0)) {
+							return false;
+						}
 						break;
 				}
 					break; // White Switch case
@@ -118,6 +124,8 @@ public class MoveValidator {
 					case "Rook":
 						if(deltaRank != 0 && deltaFile != 0) {
 							return false;
+						}else if(!(validateMovement(board, x, y, tX, tY, board[x][y].getType()))) {
+							return false;
 						}
 						break;
 					case "Knight":
@@ -133,14 +141,49 @@ public class MoveValidator {
 					case "King":
 						if(!((Math.abs(deltaRank) == 1 || Math.abs(deltaRank) == 0) && (Math.abs(deltaFile) == 1 || Math.abs(deltaFile) == 0))) {
 							return false;
-						}						break;
+						}						
+						break;
 					case "Queen":
-						System.out.println("Queen");
+						if(!(Math.abs(deltaRank) == Math.abs(deltaFile)) && (deltaRank != 0 && deltaFile != 0)) {
+							return false;
+						}
 						break;
 			}
 				break; // Black Switch case
 		}
 		
+		return true;
+	}
+		
+	private boolean validateMovement(Piece[][] board, int x, int y, int tX, int tY, String piece) {
+		int deltaRank = tY - y;
+		int deltaFile = tX - x;
+		
+		switch(piece) {
+			case "Rook":
+				if(deltaRank == 0) { // If the movement is vertical
+					for(int i = 1; i < Math.abs(deltaFile); i++) {
+						if(board[(i * (Math.abs(deltaFile) / deltaFile)) + x][y] != null) {
+							return false;
+						}
+					}
+				} else { // If the movement is horizontal
+					for(int i = 1; i < Math.abs(deltaRank); i++) {
+						if(board[x][(i * (Math.abs(deltaRank) / deltaRank)) + y] != null) {
+							System.out.println("Found object");
+							return false;
+						}
+					}
+				}
+				break;
+			case "Bishop":
+				
+				break;
+				
+			case "Queen":
+				
+				break;
+		}
 		return true;
 	}
 	
