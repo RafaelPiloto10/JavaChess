@@ -73,6 +73,8 @@ public class MoveValidator {
 					case "Bishop":
 						if(!(Math.abs(deltaRank) == Math.abs(deltaFile))) {
 							return false;
+						}else if(!(validateMovement(board, x, y, tX, tY, board[x][y].getType()))) {
+							return false;
 						}
 						break;
 					case "King":
@@ -82,6 +84,8 @@ public class MoveValidator {
 						break;
 					case "Queen":
 						if(!(Math.abs(deltaRank) == Math.abs(deltaFile)) && (deltaRank != 0 && deltaFile != 0)) {
+							return false;
+						} else if(!validateMovement(board, x, y, tX, tY, board[x][y].getType())) {
 							return false;
 						}
 						break;
@@ -136,6 +140,8 @@ public class MoveValidator {
 					case "Bishop":
 						if(!(Math.abs(deltaRank) == Math.abs(deltaFile))) {
 							return false;
+						} else if(!(validateMovement(board, x, y, tX, tY, board[x][y].getType()))) {
+							return false;
 						}
 						break;
 					case "King":
@@ -145,6 +151,8 @@ public class MoveValidator {
 						break;
 					case "Queen":
 						if(!(Math.abs(deltaRank) == Math.abs(deltaFile)) && (deltaRank != 0 && deltaFile != 0)) {
+							return false;
+						} else if(!validateMovement(board, x, y, tX, tY, board[x][y].getType())) {
 							return false;
 						}
 						break;
@@ -170,21 +178,51 @@ public class MoveValidator {
 				} else { // If the movement is horizontal
 					for(int i = 1; i < Math.abs(deltaRank); i++) {
 						if(board[x][(i * (Math.abs(deltaRank) / deltaRank)) + y] != null) {
-							System.out.println("Found object");
+							System.out.println("Object Detected");
 							return false;
 						}
 					}
 				}
 				break;
 			case "Bishop":
-				
+				for(int i = 1; i < Math.abs(deltaRank); i++) {
+					if(board[x + i * (deltaFile / Math.abs(deltaFile))][y + i * (deltaRank / Math.abs(deltaRank))] != null) {
+						System.out.println("Object detected");
+						return false;
+					}
+				}
 				break;
 				
 			case "Queen":
-				
+				if(deltaRank == 0) { // If the movement is vertical
+					for(int i = 1; i < Math.abs(deltaFile); i++) {
+						if(board[(i * (Math.abs(deltaFile) / deltaFile)) + x][y] != null) {
+							return false;
+						}
+					}
+				} else if(deltaFile == 0){ // If the movement is horizontal
+					for(int i = 1; i < Math.abs(deltaRank); i++) {
+						if(board[x][(i * (Math.abs(deltaRank) / deltaRank)) + y] != null) {
+							System.out.println("Object Detected");
+							return false;
+						}
+					}
+				} else {
+					for(int i = 1; i < Math.abs(deltaRank); i++) {
+						if(board[x + i * (deltaFile / Math.abs(deltaFile))][y + i * (deltaRank / Math.abs(deltaRank))] != null) {
+							System.out.println("Object detected");
+							return false;
+						}
+					}
+				}
 				break;
 		}
 		return true;
+	}
+	
+	public boolean isChecked() {
+		
+		return false;
 	}
 	
 }
