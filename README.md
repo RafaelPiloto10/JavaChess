@@ -1,9 +1,10 @@
 # Chess Game
 ### TODO:
+* Create Board
+  - [x] Create a text game of chess
 * Move Validator
-  - [ ] Create a move validator, which can be called from ```GameFlow.java```, to validate moves.
-    * Pawn validation functional
-
+  - [x] Create a move validator, which can be called from ```GameFlow.java```, to validate moves.
+  - [ ] Create a 'Check' validator and check for winning condition
 * Add UI
   - [x] Find Chess Piece resource pack
     * https://github.com/patosai/chess/tree/master/Sprites
