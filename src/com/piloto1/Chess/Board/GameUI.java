@@ -44,13 +44,20 @@ public class GameUI extends JFrame implements MouseListener{
 	
 	public void paint(Graphics g) {		
 		boolean isLight;
+		
 		for(int i = 0; i < 800; i += 100) {
 			for(int j = 0; j < 800; j += 100) {
 				isLight = (((i / 100) % 2) == ((j / 100) % 2)) ? true : false;
 				if(isLight) {
-					g.setColor(new Color(255, 223, 99));
-				}else {
-					g.setColor(new Color(255, 187, 50));
+					if(this.board[j / 100][i / 100] != null) {
+						if(this.board[j / 100][i / 100].squareLit) { g.setColor(new Color(255, 0, 0));}
+						else { g.setColor(new Color(255, 223, 99));}
+					} else { g.setColor(new Color(255, 223, 99)); }
+				} else {
+					if(this.board[j / 100][i / 100] != null) {
+						if(this.board[j / 100][i / 100].squareLit) {g.setColor(Color.RED);}
+						else { g.setColor(new Color(255, 187, 50));}
+					}else { g.setColor(new Color(255, 187, 50));}
 				}
 				g.fillRect(i, j + 25, 100, 100);
 			}

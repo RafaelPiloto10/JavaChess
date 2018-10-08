@@ -12,6 +12,7 @@ public class Piece {
 	private String player;
 	public BufferedImage img = null;
 	public boolean used = false;
+	public boolean squareLit = false;
 
 	
 	public Piece(String type, boolean state, String player){

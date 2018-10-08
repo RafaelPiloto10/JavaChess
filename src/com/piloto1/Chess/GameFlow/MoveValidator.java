@@ -217,12 +217,49 @@ public class MoveValidator {
 				}
 				break;
 		}
+		
+		board[x][y].used = true;
+		
 		return true;
 	}
 	
-	public boolean isChecked() {
+	public boolean isCastle(Piece[][] board, int x, int y, int tX, int tY) {
+		int deltaRank = tY - y;
+		int deltaFile = tX - x;
 		
-		return false;
+		if(deltaFile != 0) {
+			return false;
+		}
+		
+		if(board[tX][tY] == null){
+			if(deltaRank == 2) {
+				switch (board[x][y].getPlayer()) {
+				case "white":
+					
+					break;
+
+				case "black":
+					
+					break;
+				}
+			} else if (deltaRank == -2) {
+				switch (board[x][y].getPlayer()) {
+				case "white":
+					
+					break;
+
+				case "black":
+					break;
+				}
+			}
+		}
+		
+		return true;
+	}
+	
+	public Piece[][] Castle(Piece[][] board, int x, int y, boolean direction){
+		
+		return board;
 	}
 	
 }

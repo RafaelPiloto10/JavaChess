@@ -11,6 +11,7 @@ public class GameFlow {
 	public Piece[][] makeMove(Board B, String player) {
 		// Rank is a row board[rank]
 		// File is a column board[rank][file]
+		
 		Piece[][] board = B.board;
 		boolean validMove = false;
 		while(!validMove) {
@@ -37,15 +38,28 @@ public class GameFlow {
 	}
 	
 	public Piece[][] makeMoveUI(Piece[][] board, int x, int y, int tX, int tY){
-		if(validator.validate(board, x, y, tX, tY)) {
-			board[tX][tY] = board[x][y];
-			board[x][y] = null;
+		if(board[x][y].getType() == "King" && !board[x][y].used && validator.isCastle(board, x, y, tX, tY)) {
+			
+			boolean direction = (Math.abs(tX - x) == 0) ? true : false;
+			board[x][y].used = true;
+			board = validator.Castle(board, x, y, direction);
+			
+			return board;
 		} else {
-			System.out.println("Cannot make move");
+			if(validator.validate(board, x, y, tX, tY)) {
+				if(board[x][y].squareLit) {
+					board[x][y].squareLit = false;
+				}
+				board[x][y].used = true;
+				board[tX][tY] = board[x][y];
+				board[x][y] = null;
+			} else {
+				System.out.println("Cannot make move");
+				board[x][y].squareLit = true;
+			}
+			
+			return board;
 		}
-		
-		return board;
 	}
-	
 	
 }
