@@ -40,7 +40,7 @@ public class GameFlow {
 	public Piece[][] makeMoveUI(Piece[][] board, int x, int y, int tX, int tY){
 		if(board[x][y].getType() == "King" && !board[x][y].used && validator.isCastle(board, x, y, tX, tY)) {
 			
-			boolean direction = (Math.abs(tX - x) == 0) ? true : false;
+			boolean direction = (Math.abs(tY - y) == 0) ? true : false;
 			board[x][y].used = true;
 			board = validator.Castle(board, x, y, direction);
 			

@@ -233,40 +233,46 @@ public class MoveValidator {
 		
 		System.out.println("Checking castle");
 		
-		if(board[tX][tY] == null){
-			if(deltaRank == 2) {
-				switch (board[x][y].getPlayer()) {
+		if(board[tX][tY] != null){
+			return false;
+		}
+		if(deltaRank == 2) {
+			switch (board[x][y].getPlayer()) {
 				case "white":
-					
+					if(!(board[x][y + 1] == null && board[x][y + 2] == null && board[x][y + 3] == null)) {
+						return false;
+					}
 					break;
-
+	
 				case "black":
-					if(board[x][y + 1] == null) {
-						board[tX][tY] = board[x][y];
-						board[x][y] = null;
-						board[x][y + 1] = board[x][7];
-						board[x][7] = null;
-
+					if(board[x][y + 1] != null) {
+						return false;
 					}
 					break;
 				}
-			} else if (deltaRank == -2) {
-				switch (board[x][y].getPlayer()) {
+		} else if (deltaRank == -2) {
+			switch (board[x][y].getPlayer()) {
 				case "white":
-					
+					if(board[x][y - 1] != null) {
+						return false;
+					}
 					break;
-
+	
 				case "black":
+					if(!(board[x][y - 1] == null && board[x][y - 2] == null && board[x][y - 3] == null)) {
+						return false;
+					}
 					break;
 				}
-			}
 		}
-		
+		System.out.println("Castling is possible");
 		return true;
 	}
 	
 	public Piece[][] Castle(Piece[][] board, int x, int y, boolean direction){
-		
+		if(direction == true) {
+			
+		}
 		return board;
 	}
 	
