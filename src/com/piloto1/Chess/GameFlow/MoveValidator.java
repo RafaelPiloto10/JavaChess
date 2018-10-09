@@ -231,6 +231,8 @@ public class MoveValidator {
 			return false;
 		}
 		
+		System.out.println("Checking castle");
+		
 		if(board[tX][tY] == null){
 			if(deltaRank == 2) {
 				switch (board[x][y].getPlayer()) {
@@ -239,7 +241,13 @@ public class MoveValidator {
 					break;
 
 				case "black":
-					
+					if(board[x][y + 1] == null) {
+						board[tX][tY] = board[x][y];
+						board[x][y] = null;
+						board[x][y + 1] = board[x][7];
+						board[x][7] = null;
+
+					}
 					break;
 				}
 			} else if (deltaRank == -2) {
