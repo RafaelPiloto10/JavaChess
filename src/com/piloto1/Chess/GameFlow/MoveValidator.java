@@ -271,8 +271,40 @@ public class MoveValidator {
 	
 	public Piece[][] Castle(Piece[][] board, int x, int y, boolean direction){
 		if(direction == true) {
-			
-		}
+			switch(board[x][y].getPlayer()) {
+				case "white":
+					board[x][y + 2] = board[x][y];
+					board[x][y] = null;
+					board[x][4] = board[x][7];
+					board[x][7] = null;
+					
+					break;
+				case "black":
+					board[x][y + 2] = board[x][y];
+					board[x][y] = null;
+					board[x][5] = board[x][7];
+					board[x][7] = null;
+					break;
+			}
+		} else {
+			switch(board[x][y].getPlayer()) {
+				case "white":
+					board[x][y - 2] = board[x][y];
+					board[x][y] = null;
+					board[x][2] = board[x][0];
+					board[x][0] = null;
+					
+					break;
+				case "black":
+					board[x][y - 2] = board[x][y];
+					board[x][y] = null;
+					board[x][3] = board[x][0];
+					board[x][0] = null;
+				
+					break;
+				}
+			}
+		
 		return board;
 	}
 	

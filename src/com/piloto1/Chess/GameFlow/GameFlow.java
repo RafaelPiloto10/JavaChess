@@ -39,11 +39,12 @@ public class GameFlow {
 	
 	public Piece[][] makeMoveUI(Piece[][] board, int x, int y, int tX, int tY){
 		if(board[x][y].getType() == "King" && !board[x][y].used && validator.isCastle(board, x, y, tX, tY)) {
-			
-			boolean direction = (Math.abs(tY - y) == 0) ? true : false;
+			if(board[x][y].squareLit) {
+				board[x][y].squareLit = false;
+			}
+			boolean direction = (tY - y > 0) ? true : false;
 			board[x][y].used = true;
 			board = validator.Castle(board, x, y, direction);
-			
 			return board;
 		} else {
 			if(validator.validate(board, x, y, tX, tY)) {
@@ -57,7 +58,6 @@ public class GameFlow {
 				System.out.println("Cannot make move");
 				board[x][y].squareLit = true;
 			}
-			
 			return board;
 		}
 	}
