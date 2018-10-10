@@ -28,6 +28,15 @@ public class Piece {
 	    }
 
 	}
+	
+	public void refreshImage() {
+		try {
+			File file = new File(Piece.class.getResource(".").getPath() + "\\images\\" + (this.player + this.type + ".png"));
+	        this.img = ImageIO.read(file);
+	    } catch (IOException e) {
+	    	System.out.println("Cannot find image. ERROR: " + e);
+	    }
+	}
 
 	public String getType() {
 		return this.type;

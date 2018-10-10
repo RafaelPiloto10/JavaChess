@@ -29,6 +29,10 @@ public class MoveValidator {
 				switch(piece.getType()){
 					case "Pawn":
 						// System.out.println("Rank: " + x + " File: " + y);
+						if(tX == 7) {
+							board[x][y].setType("Queen");
+							board[x][y].refreshImage();
+						}
 						
 						if(deltaRank == 0 && board[tX][tY] != null) {
 							return false;
@@ -97,7 +101,10 @@ public class MoveValidator {
 				switch(piece.getType()){
 					case "Pawn":
 						// System.out.println("Rank: " + x + " File: " + y);
-						
+						if(tX == 0) {
+							board[x][y].setType("Queen");
+							board[x][y].refreshImage();
+						}
 						if(deltaRank == 0 && board[tX][tY] != null) {
 							return false;
 						} else {
@@ -230,9 +237,7 @@ public class MoveValidator {
 		if(deltaFile != 0) {
 			return false;
 		}
-		
-		System.out.println("Checking castle");
-		
+				
 		if(board[tX][tY] != null){
 			return false;
 		}
@@ -265,7 +270,6 @@ public class MoveValidator {
 					break;
 				}
 		}
-		System.out.println("Castling is possible");
 		return true;
 	}
 	
@@ -304,6 +308,8 @@ public class MoveValidator {
 					break;
 				}
 			}
+		
+		System.out.println("Castle completed");
 		
 		return board;
 	}
