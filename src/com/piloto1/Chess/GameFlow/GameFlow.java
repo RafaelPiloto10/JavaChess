@@ -1,5 +1,8 @@
 package com.piloto1.Chess.GameFlow;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import com.piloto1.Chess.Board.Board;
 import com.piloto1.Chess.Board.Piece.Piece;
 
@@ -7,11 +10,13 @@ public class GameFlow {
 	
 	MoveValidator validator = new MoveValidator();
 	ConsoleManagement input = new ConsoleManagement();
-
+	
+	ArrayList<Piece[][]> boardHistory = new ArrayList<>();
+	int historyIndex = 0;
+	
 	public Piece[][] makeMove(Board B, String player) {
 		// Rank is a row board[rank]
 		// File is a column board[rank][file]
-		
 		Piece[][] board = B.board;
 		boolean validMove = false;
 		while(!validMove) {
@@ -45,6 +50,7 @@ public class GameFlow {
 			boolean direction = (tY - y > 0) ? true : false;
 			board[x][y].used = true;
 			board = validator.Castle(board, x, y, direction);
+			this.boardHistory.add(board);
 			return board;
 		} else {
 			if(validator.validate(board, x, y, tX, tY)) {
@@ -58,8 +64,12 @@ public class GameFlow {
 				System.out.println("Cannot make move");
 				board[x][y].squareLit = true;
 			}
+			this.boardHistory.add(board);
 			return board;
 		}
 	}
-	
+	public Piece[][] redo(){
+		Piece[][] newBoard = this.boardHistory.get(this.boardHistory.size() - 2);
+		return newBoard;
+	}
 }

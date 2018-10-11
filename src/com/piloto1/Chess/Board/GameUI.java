@@ -4,13 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 
 import com.piloto1.Chess.Board.Piece.Piece;
 import com.piloto1.Chess.GameFlow.GameFlow;
 
-public class GameUI extends JFrame implements MouseListener{
+public class GameUI extends JFrame implements MouseListener, KeyListener{
 	
 	int height;
 	int width;
@@ -35,6 +37,7 @@ public class GameUI extends JFrame implements MouseListener{
 	    this.board = board;
 	    this.gameControl = gf;   
 	    addMouseListener(this);
+	    addKeyListener(this);
 	    
 	}
 	
@@ -101,6 +104,28 @@ public class GameUI extends JFrame implements MouseListener{
 		// TODO Auto-generated method stub
 		this.board = this.gameControl.makeMoveUI(this.board, this.prevY, this.prevX, mouse.getY() / 100, mouse.getX() / 100);
 		repaint();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getKeyChar() == 'r'){
+			System.out.println("Redo!");
+			this.board = this.gameControl.redo();
+			repaint();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 		
 }
